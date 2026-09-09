@@ -91,6 +91,20 @@ alter table public.projects enable row level security;
 alter table public.invoices enable row level security;
 alter table public.notes enable row level security;
 
+-- Table-level grants — required in addition to the RLS policies below.
+-- Supabase only auto-grants SELECT to `anon` by default, not INSERT/UPDATE/
+-- DELETE, so without these the leads_public_insert policy below is never
+-- even reached (Postgres checks base privileges before RLS).
+grant usage on schema public to anon, authenticated;
+
+grant select on public.services to anon, authenticated;
+grant insert on public.leads to anon;
+grant select, insert, update, delete on public.leads to authenticated;
+grant select, insert, update, delete on public.services to authenticated;
+grant select, insert, update, delete on public.projects to authenticated;
+grant select, insert, update, delete on public.invoices to authenticated;
+grant select, insert, update, delete on public.notes to authenticated;
+
 -- services: everyone can read; only signed-in staff can write
 drop policy if exists "services_public_select" on public.services;
 create policy "services_public_select" on public.services
