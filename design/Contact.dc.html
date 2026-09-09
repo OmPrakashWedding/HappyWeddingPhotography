@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500,600&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Jost',sans-serif;color:#3d332a;background:#faf6ef;}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:500;margin:0;}
+  a{color:#8f6a34;text-decoration:none;}
+  a:hover{color:#3d332a;}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8f6a34;}
+  label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#6b5c4c;display:block;margin-bottom:8px;}
+  .field{width:100%;padding:14px 16px;border:1px solid #e6d9c3;border-radius:4px;background:#fffdf9;font-family:'Jost',sans-serif;font-size:14px;color:#3d332a;}
+</style>
+</helmet>
+
+<div style="width:1440px;">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:90px;padding:0 64px;background:#faf6efee;border-bottom:1px solid #e6d9c3;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="Instagarm_logo.jpg" style="width:46px;height:46px;border-radius:999px;object-fit:cover;" />
+      <div class="serif" style="font-size:22px;letter-spacing:.04em;">Happy Wedding Photography</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:40px;">
+      <a href="#" style="font-size:14px;">About</a>
+      <a href="#" style="font-size:14px;">Blog</a>
+      <a href="#" style="font-size:14px;">Portfolio</a>
+      <a href="#" style="font-size:14px;">Galleries</a>
+      <a href="#" style="background:#3d332a;color:#fffaf1;padding:12px 28px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Book Now</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div style="padding:80px 64px 8px;text-align:center;">
+    <div class="eyebrow">Let's Talk</div>
+    <h1 style="font-size:46px;margin-top:14px;">Book Your Date</h1>
+    <p style="font-size:15px;color:#6b5c4c;font-weight:300;max-width:520px;margin:16px auto 0;">Tell us a little about your celebration and we'll get back to you within 24 hours &mdash; or call us directly.</p>
+  </div>
+
+  <!-- CONTENT -->
+  <div style="padding:56px 64px 100px;display:grid;grid-template-columns:1fr 1.2fr;gap:56px;align-items:start;">
+
+    <!-- INFO COLUMN -->
+    <div>
+      <div style="height:340px;border-radius:6px;background:linear-gradient(135deg,#f0dcc0,#d7a978 55%,#c98f8a);margin-bottom:32px;"></div>
+      <div style="margin-bottom:28px;">
+        <div class="eyebrow">Call Us Directly</div>
+        <div class="serif" style="font-size:30px;margin-top:8px;">+91 98103 49614</div>
+      </div>
+      <div style="margin-bottom:28px;">
+        <div class="eyebrow">Email</div>
+        <div style="font-size:15px;margin-top:8px;color:#6b5c4c;">happyweddingds@gmail.com</div>
+      </div>
+      <div>
+        <div class="eyebrow">Studio</div>
+        <div style="font-size:15px;margin-top:8px;color:#6b5c4c;">A-64, Pocket A, Sarita Vihar,<br/>New Delhi, Delhi 110076</div>
+      </div>
+    </div>
+
+    <!-- FORM -->
+    <div style="background:#fffdf9;border:1px solid #e6d9c3;border-radius:8px;padding:44px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px;">
+        <div>
+          <label>Full Name</label>
+          <div class="field">Full Name</div>
+        </div>
+        <div>
+          <label>Phone</label>
+          <div class="field">+91 00000 00000</div>
+        </div>
+      </div>
+      <div style="margin-bottom:22px;">
+        <label>Email</label>
+        <div class="field">Full Email</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:22px;">
+        <div>
+          <label>Event Type</label>
+          <div class="field">Wedding</div>
+        </div>
+        <div>
+          <label>Event Date</label>
+          <div class="field">DD / MM / YYYY</div>
+        </div>
+      </div>
+      <div style="margin-bottom:28px;">
+        <label>Message</label>
+        <div class="field" style="height:96px;">Tell us about your celebration&hellip;</div>
+      </div>
+      <div style="background:#b98b4e;color:#fff;padding:16px;border-radius:999px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-align:center;">Send Enquiry</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div style="padding:40px 64px;border-top:1px solid #e6d9c3;text-align:center;font-size:12px;color:#8a7a64;">&copy; 2026 Happy Wedding Photography. All rights reserved.</div>
+
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

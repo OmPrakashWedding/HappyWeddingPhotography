@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Jost',sans-serif;color:#3d332a;background:#faf6ef;}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:500;margin:0;}
+  a{color:#8f6a34;text-decoration:none;}
+  a:hover{color:#3d332a;}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8f6a34;}
+  .tab{font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;border-radius:999px;}
+</style>
+</helmet>
+
+<div style="width:1440px;">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:90px;padding:0 64px;background:#faf6efee;border-bottom:1px solid #e6d9c3;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="Instagarm_logo.jpg" style="width:46px;height:46px;border-radius:999px;object-fit:cover;" />
+      <div class="serif" style="font-size:22px;letter-spacing:.04em;">Happy Wedding Photography</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:40px;">
+      <a href="#" style="font-size:14px;">About</a>
+      <a href="#" style="font-size:14px;">Blog</a>
+      <a href="#" style="font-size:14px;">Portfolio</a>
+      <a href="#" style="font-size:14px;font-weight:600;color:#3d332a;border-bottom:2px solid #b98b4e;padding-bottom:4px;">Galleries</a>
+      <a href="#" style="background:#b98b4e;color:#fff;padding:12px 28px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Book Now</a>
+    </div>
+  </div>
+
+  <!-- HEADER + FILTERS -->
+  <div style="padding:80px 64px 32px;text-align:center;">
+    <div class="eyebrow">Full Library</div>
+    <h1 style="font-size:48px;margin-top:14px;">Galleries</h1>
+    <p style="font-size:15px;color:#6b5c4c;font-weight:300;max-width:520px;margin:18px auto 32px;">Browse the complete collection by category &mdash; photos and films from every celebration we've been part of.</p>
+    <div style="display:flex;justify-content:center;gap:12px;">
+      <div class="tab" style="background:#3d332a;color:#fffaf1;">All</div>
+      <div class="tab" style="background:#fffdf9;border:1px solid #e6d9c3;">Weddings</div>
+      <div class="tab" style="background:#fffdf9;border:1px solid #e6d9c3;">Pre-Wedding</div>
+      <div class="tab" style="background:#fffdf9;border:1px solid #e6d9c3;">Corporate Events</div>
+      <div class="tab" style="background:#fffdf9;border:1px solid #e6d9c3;">Films</div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: WEDDINGS -->
+  <div style="padding:48px 64px 0;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px;">
+      <h2 style="font-size:26px;">Weddings</h2>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;">See all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;">
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#f0dcc0,#d7a978);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#e7c9b8,#c98f8a);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#e3cfae,#b98b4e);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#ead6c0,#c9a06a);"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: PRE-WEDDING -->
+  <div style="padding:56px 64px 0;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px;">
+      <h2 style="font-size:26px;">Pre-Wedding</h2>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;">See all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;">
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#d8ddc4,#a9b18f);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#e7c9b8,#a9707a);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#f0dcc0,#c99a72);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#e3cfae,#8f6a34);"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: CORPORATE -->
+  <div style="padding:56px 64px 0;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px;">
+      <h2 style="font-size:26px;">Corporate Events</h2>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;">See all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;">
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#ddd8c4,#a3a98a);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#e9d3b0,#b4986a);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#d8c9c4,#a98f8f);"></div>
+      <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(135deg,#e6dcc4,#c2a875);"></div>
+    </div>
+  </div>
+
+  <!-- CATEGORY: FILMS -->
+  <div style="padding:56px 64px 0;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px;">
+      <h2 style="font-size:26px;">Films</h2>
+      <a href="https://www.youtube.com/@happyweddingphotography2030" target="_blank" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;">Watch on YouTube &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+      <div style="position:relative;height:240px;border-radius:4px;background:linear-gradient(160deg,#3d332a,#6b5c4c);">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div style="width:52px;height:52px;border-radius:999px;background:rgba(255,250,241,0.9);display:flex;align-items:center;justify-content:center;">
+            <div style="width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid #3d332a;margin-left:3px;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;height:240px;border-radius:4px;background:linear-gradient(160deg,#5a4a38,#8f6a34);">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div style="width:52px;height:52px;border-radius:999px;background:rgba(255,250,241,0.9);display:flex;align-items:center;justify-content:center;">
+            <div style="width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid #3d332a;margin-left:3px;"></div>
+          </div>
+        </div>
+      </div>
+      <div style="position:relative;height:240px;border-radius:4px;background:linear-gradient(160deg,#4a3d30,#a9707a);">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <div style="width:52px;height:52px;border-radius:999px;background:rgba(255,250,241,0.9);display:flex;align-items:center;justify-content:center;">
+            <div style="width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid #3d332a;margin-left:3px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="margin-top:80px;padding:40px 64px;border-top:1px solid #e6d9c3;text-align:center;font-size:12px;color:#8a7a64;">&copy; 2026 Happy Wedding Photography. All rights reserved.</div>
+
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Jost',sans-serif;color:#3d332a;background:linear-gradient(180deg,#faf6ef 0%,#f4e9d9 55%,#efdcc3 100%);}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:500;margin:0;}
+  a{color:#8f6a34;text-decoration:none;}
+  a:hover{color:#3d332a;}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8f6a34;}
+  .card-shadow{box-shadow:0 18px 40px -18px rgba(80,60,30,0.28);}
+</style>
+</helmet>
+
+<div style="width:1440px;position:relative;">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:90px;padding:0 64px;background:#faf6efee;border-bottom:1px solid #e6d9c3;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="Instagarm_logo.jpg" style="width:46px;height:46px;border-radius:999px;object-fit:cover;" />
+      <div class="serif" style="font-size:22px;letter-spacing:.04em;">Happy Wedding Photography</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:40px;">
+      <a href="#" style="font-size:14px;letter-spacing:.03em;">About</a>
+      <a href="#" style="font-size:14px;letter-spacing:.03em;">Blog</a>
+      <a href="#" style="font-size:14px;letter-spacing:.03em;">Portfolio</a>
+      <a href="#" style="font-size:14px;letter-spacing:.03em;">Galleries</a>
+      <a href="#" style="background:{{accent}};color:#fff;padding:12px 28px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Book Now</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="position:relative;height:660px;margin:48px 64px 0;border-radius:6px;overflow:hidden;background:linear-gradient(120deg,#e9d3b0 0%,#dcb98c 45%,#c99a72 100%);" class="card-shadow">
+    <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 20%,rgba(255,255,255,0.35),transparent 55%),radial-gradient(circle at 80% 80%,rgba(120,80,40,0.25),transparent 50%);"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:56px 64px;background:linear-gradient(0deg,rgba(40,26,12,0.55),transparent);">
+      <div style="color:#f4e9d9;font-size:12px;letter-spacing:.28em;text-transform:uppercase;margin-bottom:14px;">Wedding &middot; Pre-Wedding &middot; Films</div>
+      <h1 style="color:#fffaf1;font-size:64px;line-height:1.05;max-width:680px;">Timeless stories, beautifully told.</h1>
+      <p style="color:#f4e9d9;font-size:16px;max-width:520px;margin:20px 0 28px;font-weight:300;">Wedding photography, videography &amp; cinematography for couples who want their day remembered exactly as it felt.</p>
+      <a href="#" style="background:{{accent}};color:#fff;padding:16px 36px;border-radius:999px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;display:inline-block;">Book Now</a>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div style="max-width:760px;margin:120px auto 0;text-align:center;padding:0 64px;">
+    <div class="eyebrow">Our Philosophy</div>
+    <h2 style="font-size:34px;line-height:1.4;margin-top:14px;">We photograph the quiet glances, not just the poses &mdash; so your wedding film feels like the day itself.</h2>
+  </div>
+
+  <!-- FEATURED WORK -->
+  <div style="margin:96px 64px 0;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;">
+      <h2 style="font-size:30px;">Featured Work</h2>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;">View Portfolio &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;">
+      <div style="grid-column:span 2;height:420px;border-radius:4px;background:linear-gradient(135deg,#f0dcc0,#d7a978);"></div>
+      <div style="height:420px;border-radius:4px;background:linear-gradient(135deg,#e7c9b8,#c98f8a);"></div>
+      <div style="height:420px;border-radius:4px;background:linear-gradient(135deg,#d8ddc4,#a9b18f);"></div>
+    </div>
+  </div>
+
+  <!-- SERVICES TEASER -->
+  <div style="margin:120px 64px 0;text-align:center;">
+    <div class="eyebrow">What We Offer</div>
+    <h2 style="font-size:32px;margin-top:12px;margin-bottom:48px;">Photography, Films &amp; Cinematic Stories</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;text-align:left;">
+      <div style="background:#fffdf9;border:1px solid #e6d9c3;border-radius:6px;padding:36px 32px;">
+        <div style="width:44px;height:44px;border-radius:999px;background:#f1e3d0;margin-bottom:20px;"></div>
+        <h3 style="font-size:22px;margin-bottom:10px;">Photography</h3>
+        <p style="font-size:14px;color:#6b5c4c;line-height:1.6;font-weight:300;">Candid, editorial and portrait coverage across the full wedding timeline.</p>
+      </div>
+      <div style="background:#fffdf9;border:1px solid #e6d9c3;border-radius:6px;padding:36px 32px;">
+        <div style="width:44px;height:44px;border-radius:999px;background:#f1e3d0;margin-bottom:20px;"></div>
+        <h3 style="font-size:22px;margin-bottom:10px;">Videography</h3>
+        <p style="font-size:14px;color:#6b5c4c;line-height:1.6;font-weight:300;">Multi-camera coverage of ceremony, reception and every in-between moment.</p>
+      </div>
+      <div style="background:#fffdf9;border:1px solid #e6d9c3;border-radius:6px;padding:36px 32px;">
+        <div style="width:44px;height:44px;border-radius:999px;background:#f1e3d0;margin-bottom:20px;"></div>
+        <h3 style="font-size:22px;margin-bottom:10px;">Cinematic Films</h3>
+        <p style="font-size:14px;color:#6b5c4c;line-height:1.6;font-weight:300;">Story-led wedding films scored and edited like a short feature.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div style="margin:120px 0 0;padding:80px 64px;background:#f1e3d0;">
+    <div style="max-width:720px;margin:0 auto;text-align:center;">
+      <div style="display:inline-flex;align-items:center;gap:10px;background:#fffdf9;border:1px solid #e6d9c3;border-radius:999px;padding:10px 20px;margin-bottom:24px;">
+        <svg width="18" height="18" viewBox="0 0 48 48" style="flex-shrink:0;">
+          <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+          <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+          <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/>
+          <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+        </svg>
+        <span style="font-size:13px;font-weight:500;color:#3d332a;">5.0 Google Rating</span>
+        <div style="display:flex;gap:2px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+        </div>
+      </div>
+      <div class="eyebrow">Kind Words</div>
+      <p class="serif" style="font-size:28px;font-style:italic;line-height:1.5;margin:20px 0 24px;">&ldquo;They didn't just capture our wedding &mdash; they captured how it felt to be there.&rdquo;</p>
+      <div style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#8f6a34;">Priya &amp; Arjun &middot; Udaipur</div>
+      <div style="display:flex;justify-content:center;gap:2px;margin-top:10px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#b98b4e"><path d="M12 2.5l2.9 6.26 6.6 1.01-4.75 4.63L17.9 21.5 12 18.27 6.1 21.5l1.15-7.1-4.75-4.63 6.6-1.01L12 2.5z"/></svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- INSTAGRAM TEASER -->
+  <div style="margin:96px 64px 0;text-align:center;">
+    <div class="eyebrow">Follow the Studio</div>
+    <h2 style="font-size:28px;margin:12px 0 32px;"><a href="https://www.instagram.com/happy_wedding_photography/" target="_blank" style="color:#3d332a;">@happy_wedding_photography</a></h2>
+    <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;">
+      <div style="aspect-ratio:1/1;border-radius:4px;background:linear-gradient(160deg,#e9d3b0,#c99a72);"></div>
+      <div style="aspect-ratio:1/1;border-radius:4px;background:linear-gradient(160deg,#e7c9b8,#c98f8a);"></div>
+      <div style="aspect-ratio:1/1;border-radius:4px;background:linear-gradient(160deg,#d8ddc4,#a9b18f);"></div>
+      <div style="aspect-ratio:1/1;border-radius:4px;background:linear-gradient(160deg,#f0dcc0,#d7a978);"></div>
+      <div style="aspect-ratio:1/1;border-radius:4px;background:linear-gradient(160deg,#e3cfae,#b98b4e);"></div>
+    </div>
+  </div>
+
+  <!-- CTA BANNER -->
+  <div style="margin:120px 64px 0;border-radius:6px;padding:64px;text-align:center;background:linear-gradient(120deg,#3d332a,#5a4a38);">
+    <h2 style="color:#fffaf1;font-size:32px;margin-bottom:16px;">Have a date in mind?</h2>
+    <p style="color:#e6d9c3;font-weight:300;margin-bottom:28px;">Tell us about your celebration and we'll check availability.</p>
+    <a href="#" style="background:{{accent}};color:#fff;padding:16px 36px;border-radius:999px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;display:inline-block;">Book Now</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="margin-top:96px;padding:72px 64px 40px;border-top:1px solid #e6d9c3;">
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px;">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <img src="Instagarm_logo.jpg" style="width:38px;height:38px;border-radius:999px;object-fit:cover;" />
+          <div class="serif" style="font-size:19px;">Happy Wedding Photography</div>
+        </div>
+        <p style="font-size:13px;color:#6b5c4c;font-weight:300;max-width:280px;line-height:1.6;">Wedding &amp; event photography, videography and cinematography.</p>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8f6a34;margin-bottom:16px;">Explore</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
+          <a href="#">About</a><a href="#">Portfolio</a><a href="#">Galleries</a><a href="#">Blog</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8f6a34;margin-bottom:16px;">Contact</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;color:#6b5c4c;">
+          <div>+91 98103 49614</div>
+          <div>happyweddingds@gmail.com</div>
+          <div>Sarita Vihar, New Delhi 110076</div>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#8f6a34;margin-bottom:16px;">Follow</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:14px;">
+          <a href="https://www.instagram.com/happy_wedding_photography/" target="_blank">Instagram</a><a href="https://www.youtube.com/@happyweddingphotography2030" target="_blank">YouTube</a>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:12px;color:#8a7a64;padding-top:24px;border-top:1px solid #e6d9c3;">&copy; 2026 Happy Wedding Photography. All rights reserved.</div>
+  </div>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"accent":{"editor":"color","default":"#b98b4e","options":["#b98b4e","#c98f8a","#8f6a34","#a9707a"]}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { accent: this.props.accent ?? '#b98b4e' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+========================================
+EMAIL VERSION
+========================================
+
+Subject: Quick action needed — organizing your photos & videos for the new website
+
+Hi [Client Name],
+
+The new website is up and ready for your real photos and videos on the Portfolio pages. To keep this simple and fully in your control (no logins to give us, no waiting on us to add each photo), we've set it up so you manage everything through Google Drive (photos) and a Google Sheet (video links) — tools you already use.
+
+Here's what we need you to do:
+
+1. Photos — Google Drive
+Create this folder structure in your Google Drive (exact names matter):
+
+HWP Website Photos/
+├── Pre-Wedding/
+│   └── Featured/   <- your best 3-4 shots for the homepage-style preview
+├── Wedding/
+│   └── Featured/
+├── Events/
+│   └── Featured/
+└── Other/
+    └── Featured/
+
+- Drop all your photos for each category into that category's folder. Put your best 3-4 into the Featured subfolder too — those are the ones that show up as the small preview on the main Portfolio page.
+- Naming tip: rename files so they start with numbers (01-, 02-, 03-...) — that's the order they'll appear on the site. In Windows, select all the photos, press F2, type a name, and it auto-numbers them for you.
+- Quality: upload your best, full-quality edited exports — no need to shrink or compress them for the website, the site handles resizing automatically on its end. Just export as high-quality JPEG (not RAW/TIFF) so it displays correctly; full resolution is fine.
+- Important — sharing: for each folder (all 8, including the Featured ones), right-click -> Share -> change "Restricted" to "Anyone with the link" -> set to Viewer. This is what lets the website display them — it doesn't make anything editable, just viewable by link.
+- Once done, send us the link to each of the 4 main category folders (Pre-Wedding, Wedding, Events, Other).
+
+2. Videos — Google Sheet
+1. Create a new Google Sheet called "HWP Video Links."
+2. In row 1, add these column headers exactly: category, platform, url, caption, order.
+3. Add one row per video — category is one of pre-wedding, wedding, events, other; platform is youtube or instagram; url is just the normal link from YouTube's or Instagram's Share button.
+4. Go to File -> Share -> Publish to web, choose CSV format, and click Publish.
+5. Send us the link it gives you.
+
+A more detailed step-by-step guide is in the file "portfolio-media-integration-guide.md" (in the same Documents folder as this one) if anything above isn't clear — happy to walk through it on a call too if that's easier.
+
+Once we have the folder links and the Sheet link, your photos and videos will start appearing on the site automatically — and from then on, you can add or remove photos/videos any time yourself, with no need to contact us.
+
+Thanks!
+[Your Name]
+
+
+========================================
+SHORTER WHATSAPP / SMS VERSION
+========================================
+
+Hi [Client Name]! The website's ready for your real photos now. Two quick things:
+
+1. Photos: Create 4 Google Drive folders — Pre-Wedding, Wedding, Events, Other — each with a Featured subfolder inside for your best 3-4 shots. Drop your photos in, then share each folder as "Anyone with the link – Viewer." Send me the 4 folder links.
+
+2. Videos: Make a Google Sheet with columns category, platform, url, caption, order, add your YouTube/Instagram links, then File -> Share -> Publish to web -> CSV, and send me that link.
+
+Once I have those, everything shows up on the site automatically — and you can keep adding/removing photos and videos yourself anytime after that, no need to message me again. I'll send the full step-by-step guide too in case it helps.

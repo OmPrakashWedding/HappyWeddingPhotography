@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Jost',sans-serif;color:#3d332a;background:#faf6ef;}
+  h1,h2,h3,.serif{font-family:'Cormorant Garamond',Georgia,'Times New Roman',serif;font-weight:500;margin:0;}
+  a{color:#8f6a34;text-decoration:none;}
+  a:hover{color:#3d332a;}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;}
+  .bar-title{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:26px;}
+  .thumb{border-radius:4px;}
+</style>
+</helmet>
+
+<div style="width:1440px;">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:90px;padding:0 64px;background:#faf6efee;border-bottom:1px solid #e6d9c3;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="Instagarm_logo.jpg" style="width:46px;height:46px;border-radius:999px;object-fit:cover;" />
+      <div class="serif" style="font-size:22px;letter-spacing:.04em;">Happy Wedding Photography</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:40px;">
+      <a href="#" style="font-size:14px;">About</a>
+      <a href="#" style="font-size:14px;">Blog</a>
+      <a href="#" style="font-size:14px;font-weight:600;color:#3d332a;border-bottom:2px solid #b98b4e;padding-bottom:4px;">Portfolio</a>
+      <a href="#" style="font-size:14px;">Galleries</a>
+      <a href="#" style="background:#b98b4e;color:#fff;padding:12px 28px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Book Now</a>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div style="padding:96px 64px 32px;text-align:center;">
+    <div class="eyebrow" style="color:#8f6a34;">Curated Highlights</div>
+    <h1 style="font-size:48px;margin-top:14px;">Portfolio</h1>
+    <p style="font-size:15px;color:#6b5c4c;font-weight:300;max-width:560px;margin:18px auto 0;">Scroll through our favourite moments, grouped by celebration &mdash; each with its own mood. For the full library, browse Galleries.</p>
+  </div>
+
+  <!-- BAR 1: PRE-WEDDING (light blue) -->
+  <div style="background:linear-gradient(180deg,#eef4f8,#e5eef4);padding:72px 64px;">
+    <div class="bar-title">
+      <div>
+        <div class="eyebrow" style="color:#5f7f92;">Pre-Wedding</div>
+        <h2 style="font-size:32px;margin-top:8px;">Golden Hour Beginnings</h2>
+      </div>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#5f7f92;">View all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#dce8ef,#a9c3d3);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#c9dbe6,#8fa9bc);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e3edf3,#b7cddb);"></div>
+    </div>
+  </div>
+
+  <!-- BAR 2: WEDDING (light pink/blush) -->
+  <div style="background:linear-gradient(180deg,#f8eeee,#f3e2e0);padding:72px 64px;">
+    <div class="bar-title">
+      <div>
+        <div class="eyebrow" style="color:#a8706f;">Wedding</div>
+        <h2 style="font-size:32px;margin-top:8px;">The Big Day</h2>
+      </div>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#a8706f;">View all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;">
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0dcdc,#dcaaa8);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e9c9c8,#c98f8a);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f3e0df,#d3a09d);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#ecd2d1,#c68885);"></div>
+    </div>
+  </div>
+
+  <!-- BAR 3: EVENTS (neutral baseline, same as site) -->
+  <div style="background:#faf6ef;padding:72px 64px;">
+    <div class="bar-title">
+      <div>
+        <div class="eyebrow" style="color:#8f6a34;">Events</div>
+        <h2 style="font-size:32px;margin-top:8px;">Celebrations &amp; Corporate Events</h2>
+      </div>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;">View all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#f0dcc0,#d7a978);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#ead6c0,#c9a06a);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e3cfae,#b98b4e);"></div>
+    </div>
+  </div>
+
+  <!-- BAR 4: OTHER (muted sage/sand) -->
+  <div style="background:linear-gradient(180deg,#eef0e6,#e6e9da);padding:72px 64px;">
+    <div class="bar-title">
+      <div>
+        <div class="eyebrow" style="color:#7c8863;">Other</div>
+        <h2 style="font-size:32px;margin-top:8px;">Every Other Story</h2>
+      </div>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#7c8863;">View all &rarr;</a>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;">
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#d8ddc4,#a9b18f);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#dde2cd,#9ea87f);"></div>
+      <div class="thumb" style="aspect-ratio:4/3;background:linear-gradient(135deg,#e2e6d4,#b3bb94);"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="padding:56px 64px 40px;background:#faf6ef;border-top:1px solid #e6d9c3;text-align:center;font-size:12px;color:#8a7a64;">&copy; 2026 Happy Wedding Photography. All rights reserved.</div>
+
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

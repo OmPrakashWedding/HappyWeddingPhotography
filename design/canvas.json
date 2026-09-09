@@ -1,0 +1,10 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 3800, "title": "Home — Desktop" },
+    { "file": "Portfolio.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 3100, "title": "Portfolio — Desktop" },
+    { "file": "Galleries.dc.html", "x": 3120, "y": 0, "w": 1440, "h": 2600, "title": "Galleries — Desktop" },
+    { "file": "Contact.dc.html", "x": 4680, "y": 0, "w": 1440, "h": 1250, "title": "Book Now — Desktop" },
+    { "file": "HomeMobile.dc.html", "x": 0, "y": 3960, "w": 390, "h": 3150, "title": "Home — Mobile" }
+  ],
+  "launch": { "view": "canvas" }
+}

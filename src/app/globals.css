@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  --cream-1: #faf6ef;
+  --cream-2: #f4e9d9;
+  --cream-3: #efdcc3;
+  --gold: #b98b4e;
+  --gold-dark: #8f6a34;
+  --blush: #e3b8ac;
+  --ink: #3d332a;
+  --ink-soft: #6b5c4c;
+  --line: #e6d9c3;
+  --card: #fffdf9;
+}
+
+@theme inline {
+  --color-cream-1: var(--cream-1);
+  --color-cream-2: var(--cream-2);
+  --color-cream-3: var(--cream-3);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-blush: var(--blush);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-jost), "Segoe UI", sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, var(--cream-1) 0%, var(--cream-2) 55%, var(--cream-3) 100%);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+a {
+  color: var(--gold-dark);
+}
+a:hover {
+  color: var(--ink);
+}
