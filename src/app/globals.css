@@ -26,6 +26,7 @@
   --color-card: var(--card);
   --font-serif: var(--font-cormorant), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-jost), "Segoe UI", sans-serif;
+  --font-script: var(--font-alex-brush), cursive;
 }
 
 body {

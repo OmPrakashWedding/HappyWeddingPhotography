@@ -10,6 +10,8 @@ export type VideoLink = {
   order: number;
   /** Only set when platform === "youtube" and an ID could be extracted. */
   youtubeId?: string;
+  /** Matches a couple's Drive folder name (minus the numeric prefix), e.g. "Priya & Arjun". */
+  couple?: string;
 };
 
 const VALID_CATEGORIES: PortfolioCategorySlug[] = ["pre-wedding", "wedding", "events", "other"];
@@ -96,6 +98,7 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
       url: header.indexOf("url"),
       caption: header.indexOf("caption"),
       order: header.indexOf("order"),
+      couple: header.indexOf("couple"),
     };
     if (idx.category === -1 || idx.platform === -1 || idx.url === -1) {
       console.error("Video links CSV is missing required columns (category, platform, url)");
@@ -115,6 +118,7 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
       const caption = idx.caption !== -1 ? cells[idx.caption]?.trim() || undefined : undefined;
       const orderRaw = idx.order !== -1 ? Number(cells[idx.order]) : NaN;
       const order = Number.isFinite(orderRaw) ? orderRaw : 999;
+      const couple = idx.couple !== -1 ? cells[idx.couple]?.trim() || undefined : undefined;
 
       links.push({
         category,
@@ -122,6 +126,7 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
         url,
         caption,
         order,
+        couple,
         youtubeId: platform === "youtube" ? extractYouTubeId(url) : undefined,
       });
     }
@@ -137,6 +142,18 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
 export async function getVideoLinksByCategory(slug: PortfolioCategorySlug): Promise<VideoLink[]> {
   const all = await getAllVideoLinks();
   return all.filter((v) => v.category === slug).sort((a, b) => a.order - b.order);
+}
+
+/** Video links tagged to one specific couple within a category (the `couple` CSV column). */
+export async function getVideoLinksByCouple(
+  coupleName: string,
+  categorySlug: PortfolioCategorySlug
+): Promise<VideoLink[]> {
+  const all = await getAllVideoLinks();
+  const normalized = coupleName.trim().toLowerCase();
+  return all
+    .filter((v) => v.category === categorySlug && v.couple?.trim().toLowerCase() === normalized)
+    .sort((a, b) => a.order - b.order);
 }
 
 export const isVideoSheetConfigured = Boolean(CSV_URL);

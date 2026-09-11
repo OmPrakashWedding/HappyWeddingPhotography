@@ -4,7 +4,9 @@
     { "file": "Portfolio.dc.html", "x": 1560, "y": 0, "w": 1440, "h": 3100, "title": "Portfolio — Desktop" },
     { "file": "Galleries.dc.html", "x": 3120, "y": 0, "w": 1440, "h": 2600, "title": "Galleries — Desktop" },
     { "file": "Contact.dc.html", "x": 4680, "y": 0, "w": 1440, "h": 1250, "title": "Book Now — Desktop" },
-    { "file": "HomeMobile.dc.html", "x": 0, "y": 3960, "w": 390, "h": 3150, "title": "Home — Mobile" }
+    { "file": "HomeMobile.dc.html", "x": 0, "y": 3960, "w": 390, "h": 3150, "title": "Home — Mobile" },
+    { "file": "CoupleCollage.dc.html", "x": 6120, "y": 0, "w": 1440, "h": 1080, "title": "Couple Collage — Template" },
+    { "file": "AboutRedesign.dc.html", "x": 7680, "y": 0, "w": 1440, "h": 2600, "title": "About — Redesign" }
   ],
   "launch": { "view": "canvas" }
 }

@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Jost',sans-serif;color:#3d332a;background:linear-gradient(180deg,#faf6ef 0%,#f4e9d9 55%,#efdcc3 100%);}
+  .serif{font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;}
+  a{color:#8f6a34;text-decoration:none;}
+  .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#8f6a34;}
+</style>
+</helmet>
+
+<div style="width:1440px;">
+
+  <!-- NAV -->
+  <div style="display:flex;align-items:center;justify-content:space-between;height:90px;padding:0 64px;background:#faf6efee;border-bottom:1px solid #e6d9c3;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <img src="Instagarm_logo.jpg" style="width:46px;height:46px;border-radius:999px;object-fit:cover;" />
+      <div class="serif" style="font-size:22px;letter-spacing:.04em;">Happy Wedding Photography</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:40px;">
+      <a href="#" style="font-size:14px;font-weight:600;color:#3d332a;border-bottom:2px solid #b98b4e;padding-bottom:4px;">About</a>
+      <a href="#" style="font-size:14px;">Blog</a>
+      <a href="#" style="font-size:14px;">Portfolio</a>
+      <a href="#" style="font-size:14px;">Galleries</a>
+      <a href="#" style="background:#b98b4e;color:#fff;padding:12px 28px;border-radius:999px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;">Book Now</a>
+    </div>
+  </div>
+
+  <!-- SECTION 1: OWNER SPOTLIGHT -->
+  <div style="display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center;padding:96px 64px 100px;">
+    <img src="owner.jpg" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;box-shadow:0 24px 50px -20px rgba(80,60,30,0.35);" />
+    <div>
+      <div class="eyebrow" style="margin-bottom:16px;">Meet Your Photographer</div>
+      <h1 class="serif" style="font-size:42px;line-height:1.2;margin:0 0 24px;">Hi, I&rsquo;m Om Prakash.</h1>
+      <p style="font-size:17px;line-height:1.75;color:#4a3f34;font-weight:300;max-width:560px;">
+        I&rsquo;m the lead photographer behind Happy Wedding Photography. Over the years I&rsquo;ve stood behind the lens at some of the most meaningful moments in people&rsquo;s lives &mdash; quiet, golden-hour pre-wedding shoots, grand wedding celebrations, corporate gatherings, and the fast-moving energy of political events.
+      </p>
+      <p style="font-size:17px;line-height:1.75;color:#4a3f34;font-weight:300;max-width:560px;margin-top:18px;">
+        Every kind of shoot teaches me something different &mdash; patience, precision, timing. But what I chase in all of them is the same thing: the moment someone stops noticing the camera. My dream has always been simple &mdash; to capture people exactly as they are, so a photograph doesn&rsquo;t just show how they looked, but how they felt.
+      </p>
+    </div>
+  </div>
+
+  <!-- SECTION 2: INSPIRATION (reversed) -->
+  <div style="background:#f1e3d0;padding:100px 64px;">
+    <div style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:center;">
+      <div>
+        <div class="eyebrow" style="margin-bottom:16px;">Why Happy Wedding Photography</div>
+        <h2 class="serif" style="font-size:36px;line-height:1.3;margin:0 0 24px;">The moment right after &ldquo;yes.&rdquo;</h2>
+        <p style="font-size:17px;line-height:1.75;color:#4a3f34;font-weight:300;max-width:560px;">
+          There&rsquo;s a moment I chase at every wedding &mdash; not the vows, not the posed portraits, but the instant right after, when it hits a couple that it&rsquo;s real. That moment is what first drew me into wedding photography, and it&rsquo;s what eventually became Happy Wedding Photography.
+        </p>
+        <p style="font-size:17px;line-height:1.75;color:#4a3f34;font-weight:300;max-width:560px;margin-top:18px;">
+          It&rsquo;s the belief that a family&rsquo;s happiness, captured honestly, becomes something they keep forever &mdash; not a performance for the camera, but proof the day was exactly as good as it felt.
+        </p>
+      </div>
+      <img src="story1.jpg" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;box-shadow:0 24px 50px -20px rgba(80,60,30,0.3);" />
+    </div>
+  </div>
+
+  <!-- SECTION 3: GALLERY -->
+  <div style="padding:100px 64px 96px;text-align:center;">
+    <div class="eyebrow" style="margin-bottom:14px;">Moments We Love</div>
+    <h2 class="serif" style="font-size:32px;margin:0 0 48px;">A Few Favourites</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;">
+      <img src="story2.jpg" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;" />
+      <img src="story3.jpg" style="width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;" />
+      <div style="width:100%;aspect-ratio:4/5;border-radius:6px;background:linear-gradient(135deg,#e7c9b8,#c98f8a);display:flex;align-items:center;justify-content:center;color:#fffaf1cc;font-size:12px;letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:16px;">4th photo<br/>appears here once added</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div style="margin:0 64px 96px;border-radius:6px;padding:64px;text-align:center;background:linear-gradient(120deg,#3d332a,#5a4a38);">
+    <h2 class="serif" style="color:#fffaf1;font-size:30px;margin-bottom:14px;">Let&rsquo;s tell your story next.</h2>
+    <a href="#" style="background:#b98b4e;color:#fff;padding:16px 36px;border-radius:999px;font-size:14px;letter-spacing:.08em;text-transform:uppercase;display:inline-block;margin-top:10px;">Book Now</a>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="padding:40px 64px;border-top:1px solid #e6d9c3;text-align:center;font-size:12px;color:#8a7a64;">&copy; 2026 Happy Wedding Photography. All rights reserved.</div>
+
+</div>
+</x-dc>
+<script data-dc-script>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

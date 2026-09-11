@@ -3,9 +3,16 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { portfolioCategories, getPortfolioCategory } from "@/lib/portfolio-categories";
 import { getCategoryPhotos } from "@/lib/googleDrive";
-import { getVideoLinksByCategory } from "@/lib/videoLinks";
+import { getVideoLinksByCategory, getVideoLinksByCouple } from "@/lib/videoLinks";
+import { getFeaturedCouples, type CoupleCategorySlug } from "@/lib/couples";
 import { MediaWall } from "@/components/MediaWall";
+import { CoupleCollage } from "@/components/CoupleCollage";
 import { siteConfig } from "@/lib/site-config";
+
+const COUPLE_CATEGORIES: CoupleCategorySlug[] = ["pre-wedding", "wedding"];
+function isCoupleCategory(slug: string): slug is CoupleCategorySlug {
+  return (COUPLE_CATEGORIES as string[]).includes(slug);
+}
 
 export const revalidate = 300;
 
@@ -36,10 +43,7 @@ export default async function PortfolioCategoryPage({
   const config = getPortfolioCategory(category);
   if (!config) notFound();
 
-  const [{ all: photos }, videos] = await Promise.all([
-    getCategoryPhotos(config.slug),
-    getVideoLinksByCategory(config.slug),
-  ]);
+  const showCouples = isCoupleCategory(config.slug);
 
   return (
     <div style={{ background: config.tint }} className="min-h-screen">
@@ -61,8 +65,63 @@ export default async function PortfolioCategoryPage({
       </div>
 
       <div className="px-6 md:px-16 pb-24">
-        <MediaWall photos={photos} videos={videos} placeholderTiles={config.placeholderTiles} />
+        {showCouples ? (
+          <CoupleCollages categorySlug={config.slug as CoupleCategorySlug} accent={config.accent} />
+        ) : (
+          <CategoryMediaWall categorySlug={config.slug} placeholderTiles={config.placeholderTiles} />
+        )}
       </div>
     </div>
+  );
+}
+
+async function CategoryMediaWall({
+  categorySlug,
+  placeholderTiles,
+}: {
+  categorySlug: Parameters<typeof getCategoryPhotos>[0];
+  placeholderTiles: string[];
+}) {
+  const [{ all: photos }, videos] = await Promise.all([
+    getCategoryPhotos(categorySlug),
+    getVideoLinksByCategory(categorySlug),
+  ]);
+  return <MediaWall photos={photos} videos={videos} placeholderTiles={placeholderTiles} />;
+}
+
+async function CoupleCollages({
+  categorySlug,
+  accent,
+}: {
+  categorySlug: CoupleCategorySlug;
+  accent: string;
+}) {
+  const couples = await getFeaturedCouples(categorySlug);
+
+  if (couples.length === 0) {
+    // Nothing configured (or uploaded) yet — one sample collage so the page
+    // never looks broken, matching the rest of the pipeline's fallback rule.
+    return <CoupleCollage names="Priya & Arjun" photos={[]} videos={[]} accent={accent} />;
+  }
+
+  const collages = await Promise.all(
+    couples.map(async (couple) => ({
+      couple,
+      videos: await getVideoLinksByCouple(couple.names, categorySlug),
+    }))
+  );
+
+  return (
+    <>
+      {collages.map(({ couple, videos }) => (
+        <CoupleCollage
+          key={couple.names}
+          names={couple.names}
+          photos={couple.photos}
+          videos={videos}
+          accent={accent}
+        />
+      ))}
+    </>
   );
 }

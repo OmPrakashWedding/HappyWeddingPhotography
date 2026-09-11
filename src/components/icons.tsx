@@ -36,6 +36,33 @@ export function GoogleGIcon({ size = 18 }: { size?: number }) {
   );
 }
 
+export function HeartIcon({
+  size = 20,
+  color = "var(--gold)",
+  className = "",
+}: {
+  size?: number;
+  color?: string;
+  className?: string;
+}) {
+  return (
+    <svg
+      width={size}
+      height={(size * 22) / 24}
+      viewBox="0 0 24 22"
+      fill="none"
+      stroke={color}
+      strokeWidth={1.4}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M12 20 C4 14 1 9 1 5.8 C1 2.6 3.3 1 5.8 1 C8 1 10 2.3 12 5 C14 2.3 16 1 18.2 1 C20.7 1 23 2.6 23 5.8 C23 9 20 14 12 20 Z" />
+    </svg>
+  );
+}
+
 export function PlayIcon({ size = 56 }: { size?: number }) {
   return (
     <div

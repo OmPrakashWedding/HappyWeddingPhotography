@@ -2,6 +2,9 @@ import Link from "next/link";
 import { GoogleRatingBadge } from "@/components/GoogleRatingBadge";
 import { StarIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
+import { getFolderImages } from "@/lib/googleDrive";
+
+export const revalidate = 300;
 
 const featuredWork = [
   { span: "md:col-span-2", from: "#f0dcc0", to: "#d7a978" },
@@ -26,15 +29,32 @@ const services = [
 
 const instaTiles = ["#e9d3b0,#c99a72", "#e7c9b8,#c98f8a", "#d8ddc4,#a9b18f", "#f0dcc0,#d7a978", "#e3cfae,#b98b4e"];
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Both the hero photo and the Featured Work tiles pull from the same Drive
+  // folder used by About's Section 2/gallery — a shared photo pool, fixed
+  // pick per slot (not re-randomized per visit), same pattern as the rest
+  // of the site. Falls back to the original gradients wherever a slot
+  // doesn't have a real photo yet.
+  const pool = await getFolderImages(process.env.GOOGLE_DRIVE_FOLDER_ABOUT_STORY ?? "");
+  const heroPhoto = pool[0];
+  const featuredPhotos = pool.slice(1, 4);
+
   return (
     <div>
       {/* HERO */}
       <div className="mx-6 md:mx-16 mt-8 md:mt-12 rounded-md overflow-hidden relative h-[420px] md:h-[660px] shadow-[0_18px_40px_-18px_rgba(80,60,30,0.28)]">
-        <div
-          className="absolute inset-0"
-          style={{ background: "linear-gradient(120deg, #e9d3b0 0%, #dcb98c 45%, #c99a72 100%)" }}
-        />
+        {heroPhoto ? (
+          <img
+            src={heroPhoto.url}
+            alt={heroPhoto.name}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(120deg, #e9d3b0 0%, #dcb98c 45%, #c99a72 100%)" }}
+          />
+        )}
         <div
           className="absolute inset-0"
           style={{
@@ -80,13 +100,23 @@ export default function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
-          {featuredWork.map((tile, i) => (
-            <div
-              key={i}
-              className={`h-64 md:h-[420px] rounded ${tile.span}`}
-              style={{ background: `linear-gradient(135deg, ${tile.from}, ${tile.to})` }}
-            />
-          ))}
+          {featuredWork.map((tile, i) => {
+            const photo = featuredPhotos[i];
+            return photo ? (
+              <img
+                key={i}
+                src={photo.url}
+                alt={photo.name}
+                className={`w-full h-64 md:h-[420px] rounded object-cover ${tile.span}`}
+              />
+            ) : (
+              <div
+                key={i}
+                className={`h-64 md:h-[420px] rounded ${tile.span}`}
+                style={{ background: `linear-gradient(135deg, ${tile.from}, ${tile.to})` }}
+              />
+            );
+          })}
         </div>
       </div>
 

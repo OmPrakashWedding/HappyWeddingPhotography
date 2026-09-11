@@ -68,7 +68,7 @@ Two-digit numeric prefixes keep the order predictable (and sort correctly past 9
 
 ### 1.4 Photo prep — file type, size, and why it matters
 
-**Upload full quality — don't pre-compress.** The site never serves the file the client uploads directly: it always requests Google Drive's own auto-generated `thumbnailLink` (§1.6 below), which Google regenerates itself, server-side, at a web-appropriate size and compression every time — regardless of what the original looks like. So there is no need to manually resize/squash photos before upload for the website's sake; doing that only throws away quality for no benefit here.
+**Upload full quality — don't pre-compress.** The site never serves the file the client uploads directly: every image is served through the site's own `/api/drive-image` proxy (§1.6 below), which fetches the current file from Drive on demand — regardless of what the original looks like. So there is no need to manually resize/squash photos before upload for the website's sake; doing that only throws away quality for no benefit here.
 
 - **Format:** JPG (not HEIC/PNG for photos — HEIC won't display in most browsers, PNG is unnecessarily large for photos).
 - **Quality:** export the best quality edited version — full resolution, ~90-100% JPEG quality, sRGB color profile. Avoid RAW/TIFF: Drive can store them, but the site can't render them, and they burn through the free storage quota for no display benefit.
@@ -88,10 +88,10 @@ Just the folder link (or the folder ID from the URL, `drive.google.com/drive/fol
 
 **Code — `src/lib/googleDrive.ts`:**
 - `files.list` with `q="'<folderId>' in parents and trashed=false"`, `fields=files(id,name,mimeType)`, `orderBy=name`, `key=<API key>` — first call finds the `Featured` subfolder's own ID (`mimeType='application/vnd.google-apps.folder'`), then a second call lists images inside it the same way (`mimeType contains 'image/'`), and a third lists the full category folder minus the `Featured` subfolder itself.
-- Each image's display URL comes from Google's own returned `thumbnailLink`, upsized by swapping its `=s220` suffix for `=s1600` — deliberately using Google's own link rather than an unofficial direct-file URL pattern, for reliability.
+- Each image's display URL points at the site's own `/api/drive-image/[fileId]` route (`src/app/api/drive-image/[fileId]/route.ts`) rather than Google's `thumbnailLink` — that link is a pre-generated preview URL not guaranteed stable for hotlinking. The route instead calls Drive's actual file-content endpoint (`files/{id}?alt=media`, the stable, documented way to fetch a file's bytes) every time a browser requests the image, and sets its own `Cache-Control` (1 hour fresh, serves a stale copy up to a day while quietly refetching) — so a photo can never "go stale" the way a cached preview link can, and it's never dependent on a token that might expire.
 - Fetched with Next.js ISR (`revalidate: 300`), so a new upload shows up within ~5 minutes with zero redeploy.
 
-**Honest tradeoff, worth telling the client directly:** Drive is the account they already know, but it wasn't built as an image CDN — thumbnail links can occasionally be slower or lower-res than a dedicated image host, and Google doesn't officially guarantee hotlinking at scale. That's fine for a small studio's traffic; if photos ever load inconsistently once the site is getting real visitors, the documented fallback is migrating this one file to Cloudinary (already free-tier in the main plan) — every page consumes the same `{id, url}[]` shape regardless of source, so nothing else changes.
+**Honest tradeoff, worth telling the client directly:** Drive is the account they already know, but it wasn't built as an image CDN — even proxied through our own route, a Drive-backed image is one extra network hop slower than a dedicated image host, and Drive API quota (free, but not unlimited) governs how many images can be fetched per day. That's fine for a small studio's traffic; if photos ever load inconsistently or slowly once the site is getting real visitors, the documented fallback is migrating this one file to Cloudinary (already free-tier in the main plan) — every page consumes the same `{id, url}[]` shape regardless of source, so nothing else changes.
 
 ---
 
@@ -150,7 +150,8 @@ Just the folder link (or the folder ID from the URL, `drive.google.com/drive/fol
 
 - Dynamic route `src/app/portfolio/[category]/page.tsx`, `generateStaticParams` for the four known slugs (`pre-wedding`, `wedding`, `events`, `other`), pre-rendered + ISR-revalidated.
 - Background tint matches that category's existing Portfolio bar color (light blue / blush pink / neutral cream / muted sage) — pulled from one shared constant so the teaser bar and its deep page can never drift apart.
-- Layout: a dense "wall of images" grid — CSS columns/masonry, tiles of varied size, tight gaps — mixing photo tiles and autoplay film tiles in one feed, ordered by filename (photos) / `order` column (videos) interleaved, modeled on the reference screenshots (Litho/Hitchcock-style portfolio walls) rather than a rigid uniform grid.
+- **Events and Other**: a dense "wall of images" grid — CSS columns/masonry, tiles of varied size, tight gaps — mixing photo tiles and autoplay film tiles in one feed, ordered by filename (photos) / `order` column (videos) interleaved, modeled on the reference screenshots (Litho/Hitchcock-style portfolio walls) rather than a rigid uniform grid.
+- **Pre-Wedding and Wedding**: instead of one flat wall, the page shows a stack of up to 5 couple collages — see §5 below.
 - Each Portfolio bar's existing "See all" link points to its matching deep page; the bar itself keeps showing just the `Featured` subfolder's 3-4 curated tiles.
 
 ---
@@ -163,6 +164,58 @@ Just the folder link (or the folder ID from the URL, `drive.google.com/drive/fol
 - Every category page loads correctly with zero Drive/Sheet credentials configured too (graceful placeholder fallback), matching the rest of the site's "never block on missing credentials" rule.
 - Manual check: YouTube tiles actually autoplay muted+looped in the grid; Instagram tiles render via Instagram's embed widget without erroring; a bad `category`/`platform` value in the Sheet is skipped rather than crashing the page.
 
-## 5. Where this gets saved
+---
+
+## 5. Couple Collages — Pre-Wedding & Wedding
+
+On these two categories specifically, each featured couple gets their own photo+film collage with their names overlaid, instead of appearing in one flat wall. Full plan/reasoning: `Documents/portfolio-couple-collages-plan.md`. Here's how the client manages it day-to-day:
+
+### 5.1 Folder structure
+
+Inside each category's existing folder, add one new `Couples` folder, with one subfolder per couple:
+
+```
+HWP Website Photos/
+├── Pre-Wedding/
+│   ├── Featured/           ← unchanged, still the small /portfolio teaser bar
+│   ├── (other photos)      ← unchanged
+│   └── Couples/             ← NEW
+│       ├── 01 - Priya & Arjun/     (8-12 photos)
+│       ├── 02 - Neha & Rohan/
+│       ├── 03 - ...
+│       ├── 04 - ...
+│       └── 05 - ...
+└── Wedding/
+    ├── Featured/
+    ├── (other photos)
+    └── Couples/
+        ├── 01 - ...
+        └── ...
+```
+
+- **Only the top 5 subfolders (by number) show on the live site.** To feature a different couple, rename folder prefixes so the desired 5 are `01`–`05` — the same numbering trick already used for photo ordering elsewhere in this guide.
+- **The couple's name comes straight from the folder name** — `01 - Priya & Arjun` displays as **"Priya & Arjun."** Nowhere else to type it.
+- Each `Couples/<N - Name>/` folder (and every couple subfolder inside it) needs the same "Anyone with the link — Viewer" sharing as every other folder in this guide.
+- Aim for **roughly 8-12 photos** per couple — the collage layout adapts to anywhere from about 6 to 14, so it doesn't need to be exact.
+- Same photo prep rules as §1.4 (full quality, no need to compress).
+
+### 5.2 Adding films to a specific couple
+
+In the same "HWP Video Links" Google Sheet from §2, add one more column: `couple`.
+
+| category | platform | url | caption | order | couple |
+|---|---|---|---|---|---|
+| wedding | youtube | https://youtu.be/abc123 | First dance | 1 | Priya & Arjun |
+
+- `couple` must exactly match that couple's folder name **without** the number prefix.
+- Leave `couple` blank for rows that should keep showing in Events/Other's regular film grid (unaffected by this change).
+
+### 5.3 Setup env vars (developer)
+
+`GOOGLE_DRIVE_COUPLES_FOLDER_PRE_WEDDING` and `GOOGLE_DRIVE_COUPLES_FOLDER_WEDDING` — each is the ID of that category's `Couples` parent folder (from its URL). See `docs/CREDENTIALS_SETUP.md`.
+
+---
+
+## 6. Where this gets saved
 
 Every plan for this project lives inside the project itself, in `C:\Users\acer\Desktop\Websites\HappyWeddingPhotography\Documents\` — not just kept in the external Claude Code plan-file location. Once approved, this plan is written there as its own file, `portfolio-media-integration-guide.md`, standalone and separate from `wedding-photography-website-dev-plan.md` (which is left as-is). Any future plan for this project follows the same rule: written into `Documents\` under its own clearly-named file, so the project folder always holds the complete, current set of plans for anyone who opens it — not just this session.

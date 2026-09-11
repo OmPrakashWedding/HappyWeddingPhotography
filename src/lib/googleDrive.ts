@@ -7,31 +7,33 @@ export type DriveImage = {
   name: string;
 };
 
-type DriveFile = {
+export type DriveFile = {
   id: string;
   name: string;
   mimeType: string;
-  thumbnailLink?: string;
 };
+
+export type DriveSubfolder = { id: string; name: string };
 
 const DRIVE_API_KEY = process.env.GOOGLE_DRIVE_API_KEY;
 const FOLDER_MIME = "application/vnd.google-apps.folder";
 
 /**
- * Upsizes Google's own returned thumbnail link (e.g. "...=s220") to a
- * larger render size, instead of guessing an unofficial direct-file URL —
- * see Documents/portfolio-media-integration-guide.md §1.6 for why.
+ * Served through our own /api/drive-image proxy (src/app/api/drive-image/
+ * [fileId]/route.ts) rather than Google's `thumbnailLink`, which is a
+ * pre-generated preview URL not guaranteed stable for hotlinking — see
+ * Documents/portfolio-media-integration-guide.md §1.6 for why.
  */
-function toDisplayUrl(thumbnailLink: string, size = 1600): string {
-  return thumbnailLink.replace(/=s\d+$/, `=s${size}`);
+function toDisplayUrl(fileId: string): string {
+  return `/api/drive-image/${fileId}`;
 }
 
-async function listFolderChildren(folderId: string): Promise<DriveFile[]> {
+export async function listFolderChildren(folderId: string): Promise<DriveFile[]> {
   if (!DRIVE_API_KEY) return [];
 
   const params = new URLSearchParams({
     q: `'${folderId}' in parents and trashed=false`,
-    fields: "files(id,name,mimeType,thumbnailLink)",
+    fields: "files(id,name,mimeType)",
     orderBy: "name",
     key: DRIVE_API_KEY,
     pageSize: "200",
@@ -55,8 +57,22 @@ async function listFolderChildren(folderId: string): Promise<DriveFile[]> {
 
 function toDriveImages(files: DriveFile[]): DriveImage[] {
   return files
-    .filter((f) => f.mimeType.startsWith("image/") && f.thumbnailLink)
-    .map((f) => ({ id: f.id, name: f.name, url: toDisplayUrl(f.thumbnailLink!) }));
+    .filter((f) => f.mimeType.startsWith("image/"))
+    .map((f) => ({ id: f.id, name: f.name, url: toDisplayUrl(f.id) }));
+}
+
+/** Subfolders directly inside `folderId`, sorted by name — used for the Couples/ folder. */
+export async function listSubfolders(folderId: string): Promise<DriveSubfolder[]> {
+  const children = await listFolderChildren(folderId);
+  return children
+    .filter((f) => f.mimeType === FOLDER_MIME)
+    .map((f) => ({ id: f.id, name: f.name }));
+}
+
+/** Every image directly inside `folderId`, as ready-to-render DriveImages. */
+export async function getFolderImages(folderId: string): Promise<DriveImage[]> {
+  const children = await listFolderChildren(folderId);
+  return toDriveImages(children);
 }
 
 /**
@@ -75,7 +91,9 @@ export async function getCategoryPhotos(
   }
 
   const children = await listFolderChildren(folderId);
-  const featuredFolder = children.find((f) => f.mimeType === FOLDER_MIME && f.name === "Featured");
+  const featuredFolder = children.find(
+    (f) => f.mimeType === FOLDER_MIME && f.name.trim().toLowerCase() === "featured"
+  );
 
   const [featuredFiles, restImages] = await Promise.all([
     featuredFolder ? listFolderChildren(featuredFolder.id) : Promise.resolve([]),

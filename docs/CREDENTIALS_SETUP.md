@@ -46,8 +46,10 @@ Full client-facing setup guide (folder structure, naming, the exact CSV publish 
 
 1. **Google Drive API key**: [console.cloud.google.com](https://console.cloud.google.com) → enable **Google Drive API** → Credentials → create an API key → `GOOGLE_DRIVE_API_KEY`. Restrict it to the Drive API (and, once the domain is live, to that domain via HTTP referrer restriction).
 2. **Folder IDs**: from each category folder's URL (`drive.google.com/drive/folders/<FOLDER_ID>`) → `GOOGLE_DRIVE_FOLDER_PRE_WEDDING`, `GOOGLE_DRIVE_FOLDER_WEDDING`, `GOOGLE_DRIVE_FOLDER_EVENTS`, `GOOGLE_DRIVE_FOLDER_OTHER`. Each folder (and its `Featured` subfolder) must be shared "Anyone with the link — Viewer" or the site can't read it.
-3. **Video links CSV**: the published-CSV URL from the client's Google Sheet (File → Share → Publish to web → CSV) → `GOOGLE_SHEET_VIDEOS_CSV_URL`.
-4. Restart `npm run dev`, visit `/portfolio/pre-wedding` (etc.) — real photos/films should replace the placeholder tiles within the 5-minute revalidate window.
+3. **Couple collages** (Pre-Wedding/Wedding deep pages): the `Couples/` parent folder ID per category → `GOOGLE_DRIVE_COUPLES_FOLDER_PRE_WEDDING`, `GOOGLE_DRIVE_COUPLES_FOLDER_WEDDING`. Same sharing rule applies to every couple subfolder inside. See `Documents/portfolio-media-integration-guide.md` §5 for the naming convention that controls which 5 couples are featured.
+4. **Video links CSV**: the published-CSV URL from the client's Google Sheet (File → Share → Publish to web → CSV) → `GOOGLE_SHEET_VIDEOS_CSV_URL`.
+5. **About page**: `GOOGLE_DRIVE_FOLDER_ABOUT_OWNER` (owner's photo folder) and `GOOGLE_DRIVE_FOLDER_ABOUT_STORY` (story photo + gallery folder) — see `Documents/about-page-redesign-plan.md`. Same sharing rule, same API key.
+6. Restart `npm run dev`, visit `/portfolio/pre-wedding` (etc.) — real photos/films should replace the placeholder tiles within the 5-minute revalidate window.
 
 ## Domain
 
