@@ -1,4 +1,5 @@
 import { listSubfolders, getFolderImages, type DriveImage } from "./googleDrive";
+import { pickRandom } from "./random";
 
 export type CoupleCategorySlug = "pre-wedding" | "wedding";
 
@@ -14,6 +15,9 @@ const COUPLES_FOLDER_ENV: Record<CoupleCategorySlug, string> = {
 };
 
 const MAX_FEATURED = 5;
+/** A couple's folder can hold 70+ shoot photos — cap the collage at a
+ *  random selection so the page stays light and fast. */
+const MAX_PHOTOS_PER_COUPLE = 10;
 
 /** Strips a leading "01 - " / "01-" style ordering prefix off a folder name. */
 function stripOrderPrefix(folderName: string): string {
@@ -41,7 +45,7 @@ export async function getFeaturedCouples(slug: CoupleCategorySlug): Promise<Coup
   const couples = await Promise.all(
     featured.map(async (folder) => ({
       names: stripOrderPrefix(folder.name),
-      photos: await getFolderImages(folder.id),
+      photos: pickRandom(await getFolderImages(folder.id), MAX_PHOTOS_PER_COUPLE),
     }))
   );
 

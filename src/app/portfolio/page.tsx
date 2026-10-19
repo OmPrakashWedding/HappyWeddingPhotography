@@ -1,14 +1,33 @@
 import Link from "next/link";
+import Image from "next/image";
 import { portfolioCategories } from "@/lib/portfolio-categories";
 import { getCategoryPhotos } from "@/lib/googleDrive";
+import { getFeaturedCouples, type CoupleCategorySlug } from "@/lib/couples";
 
 export const revalidate = 300;
+
+const COUPLE_CATEGORIES: CoupleCategorySlug[] = ["pre-wedding", "wedding"];
+function isCoupleCategory(slug: string): slug is CoupleCategorySlug {
+  return (COUPLE_CATEGORIES as string[]).includes(slug);
+}
 
 export default async function PortfolioPage() {
   const barsData = await Promise.all(
     portfolioCategories.map(async (category) => {
-      const { featured } = await getCategoryPhotos(category.slug);
-      return { category, featured };
+      const { featured, all } = await getCategoryPhotos(category.slug);
+
+      // Fall back through the same real photos already shown elsewhere on
+      // the site, rather than placeholder tiles: first the category's own
+      // "Featured" subfolder, then its wider photo pool (e.g. Wedding/
+      // Gallery), then — for Pre-Wedding/Wedding — the first couple's
+      // photos, since that's where the real volume of photos actually is.
+      let preview = featured.length > 0 ? featured : all;
+      if (preview.length === 0 && isCoupleCategory(category.slug)) {
+        const couples = await getFeaturedCouples(category.slug);
+        preview = couples[0]?.photos ?? [];
+      }
+
+      return { category, preview };
     })
   );
 
@@ -23,7 +42,7 @@ export default async function PortfolioPage() {
         </p>
       </div>
 
-      {barsData.map(({ category, featured }) => (
+      {barsData.map(({ category, preview }) => (
         <div
           key={category.slug}
           style={{ background: category.tint }}
@@ -52,17 +71,23 @@ export default async function PortfolioPage() {
               category.cols === 4 ? "md:grid-cols-4" : "md:grid-cols-3"
             }`}
           >
-            {featured.length > 0
-              ? featured
+            {preview.length > 0
+              ? preview
                   .slice(0, category.cols)
                   .map((photo) => (
-                    <img
+                    <div
                       key={photo.id}
-                      src={photo.url}
-                      alt={photo.name}
-                      loading="lazy"
-                      className="aspect-[4/3] w-full rounded object-cover"
-                    />
+                      className="relative aspect-[4/3] w-full rounded overflow-hidden"
+                      style={{ background: category.tint }}
+                    >
+                      <Image
+                        src={photo.url}
+                        alt={photo.name}
+                        fill
+                        sizes="(max-width: 768px) 50vw, 25vw"
+                        className="object-contain"
+                      />
+                    </div>
                   ))
               : category.placeholderTiles.map((grad, i) => (
                   <div

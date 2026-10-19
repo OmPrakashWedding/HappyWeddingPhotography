@@ -1,4 +1,5 @@
 import { getFolderImages, type DriveImage } from "./googleDrive";
+import { pickRandom } from "./random";
 
 export type AboutImages = {
   ownerPhoto: DriveImage | null;
@@ -17,6 +18,10 @@ export type AboutImages = {
  * whatever would otherwise sort first alphabetically.
  */
 const PINNED_STORY_PHOTO_ID = "1iwN4fxIh5wknF9uiEfgubYZ9aDLvwmp_";
+
+/** Cap the gallery at a random selection as the story folder grows, same
+ *  policy as the rest of the site's Drive-sourced photo grids. */
+const MAX_GALLERY_PHOTOS = 10;
 
 /**
  * Returns nulls/[] gracefully if the env vars aren't configured yet — same
@@ -38,6 +43,9 @@ export async function getAboutImages(): Promise<AboutImages> {
   return {
     ownerPhoto: ownerImages[0] ?? null,
     storyPhoto: storyImages[storyIndex] ?? null,
-    galleryPhotos: storyImages.filter((_, i) => i !== storyIndex),
+    galleryPhotos: pickRandom(
+      storyImages.filter((_, i) => i !== storyIndex),
+      MAX_GALLERY_PHOTOS
+    ),
   };
 }

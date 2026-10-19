@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getAboutImages } from "@/lib/about";
 
 export const revalidate = 300;
@@ -18,11 +19,15 @@ export default async function AboutPage() {
       <div className="px-6 md:px-16 pt-16 md:pt-24 pb-16 md:pb-24">
         <div className="grid grid-cols-1 md:grid-cols-[5fr_7fr] gap-10 md:gap-16 items-center max-w-[1200px] mx-auto">
           {ownerPhoto ? (
-            <img
-              src={ownerPhoto.url}
-              alt={ownerPhoto.name}
-              className="w-full aspect-[4/5] object-cover object-left rounded-md shadow-[0_24px_50px_-20px_rgba(80,60,30,0.35)]"
-            />
+            <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden shadow-[0_24px_50px_-20px_rgba(80,60,30,0.35)]">
+              <Image
+                src={ownerPhoto.url}
+                alt={ownerPhoto.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover object-left"
+              />
+            </div>
           ) : (
             <div
               className="w-full aspect-[4/5] rounded-md"
@@ -76,11 +81,15 @@ export default async function AboutPage() {
             </p>
           </div>
           {storyPhoto ? (
-            <img
-              src={storyPhoto.url}
-              alt={storyPhoto.name}
-              className="w-full aspect-[4/5] object-cover rounded-md shadow-[0_24px_50px_-20px_rgba(80,60,30,0.3)] md:order-2 order-1"
-            />
+            <div className="relative w-full aspect-[4/5] rounded-md overflow-hidden shadow-[0_24px_50px_-20px_rgba(80,60,30,0.3)] md:order-2 order-1">
+              <Image
+                src={storyPhoto.url}
+                alt={storyPhoto.name}
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-cover"
+              />
+            </div>
           ) : (
             <div
               className="w-full aspect-[4/5] rounded-md md:order-2 order-1"
@@ -99,12 +108,15 @@ export default async function AboutPage() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-[1100px] mx-auto">
           {galleryPhotos.length > 0
             ? galleryPhotos.map((photo) => (
-                <img
-                  key={photo.id}
-                  src={photo.url}
-                  alt={photo.name}
-                  className="w-full aspect-[4/5] object-cover rounded-md"
-                />
+                <div key={photo.id} className="relative w-full aspect-[4/5] rounded-md overflow-hidden">
+                  <Image
+                    src={photo.url}
+                    alt={photo.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
               ))
             : GALLERY_PLACEHOLDERS.map((grad, i) => (
                 <div

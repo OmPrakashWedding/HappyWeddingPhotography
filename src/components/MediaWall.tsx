@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { DriveImage } from "@/lib/googleDrive";
 import type { VideoLink } from "@/lib/videoLinks";
 import { YouTubeFilmTile, InstagramFilmTile } from "./FilmTile";
@@ -43,13 +44,26 @@ export function MediaWall({
 
   photos.forEach((photo, i) => {
     tiles.push(
-      <img
-        key={`photo-${photo.id}`}
-        src={photo.url}
-        alt={photo.name}
-        loading="lazy"
-        className="w-full rounded mb-3 md:mb-4 break-inside-avoid object-cover"
-      />
+      photo.width && photo.height ? (
+        <Image
+          key={`photo-${photo.id}`}
+          src={photo.url}
+          alt={photo.name}
+          width={photo.width}
+          height={photo.height}
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+          className="w-full h-auto rounded mb-3 md:mb-4 break-inside-avoid"
+        />
+      ) : (
+        // Fallback for the rare file Drive didn't return dimensions for.
+        <img
+          key={`photo-${photo.id}`}
+          src={photo.url}
+          alt={photo.name}
+          loading="lazy"
+          className="w-full rounded mb-3 md:mb-4 break-inside-avoid"
+        />
+      )
     );
     if (videoEvery > 0 && (i + 1) % videoEvery === 0 && videoIndex < videos.length) {
       const video = videos[videoIndex++];

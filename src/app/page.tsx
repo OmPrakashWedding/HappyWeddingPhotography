@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { GoogleRatingBadge } from "@/components/GoogleRatingBadge";
 import { StarIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site-config";
@@ -44,10 +45,13 @@ export default async function HomePage() {
       {/* HERO */}
       <div className="mx-6 md:mx-16 mt-8 md:mt-12 rounded-md overflow-hidden relative h-[420px] md:h-[660px] shadow-[0_18px_40px_-18px_rgba(80,60,30,0.28)]">
         {heroPhoto ? (
-          <img
+          <Image
             src={heroPhoto.url}
             alt={heroPhoto.name}
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 1440px"
+            className="object-cover"
           />
         ) : (
           <div
@@ -103,12 +107,15 @@ export default async function HomePage() {
           {featuredWork.map((tile, i) => {
             const photo = featuredPhotos[i];
             return photo ? (
-              <img
-                key={i}
-                src={photo.url}
-                alt={photo.name}
-                className={`w-full h-64 md:h-[420px] rounded object-cover ${tile.span}`}
-              />
+              <div key={i} className={`relative h-64 md:h-[420px] rounded overflow-hidden ${tile.span}`}>
+                <Image
+                  src={photo.url}
+                  alt={photo.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
             ) : (
               <div
                 key={i}

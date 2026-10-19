@@ -8,6 +8,9 @@ import { getFeaturedCouples, type CoupleCategorySlug } from "@/lib/couples";
 import { MediaWall } from "@/components/MediaWall";
 import { CoupleCollage } from "@/components/CoupleCollage";
 import { siteConfig } from "@/lib/site-config";
+import { pickRandom } from "@/lib/random";
+
+const MAX_WALL_PHOTOS = 10;
 
 const COUPLE_CATEGORIES: CoupleCategorySlug[] = ["pre-wedding", "wedding"];
 function isCoupleCategory(slug: string): slug is CoupleCategorySlug {
@@ -86,7 +89,13 @@ async function CategoryMediaWall({
     getCategoryPhotos(categorySlug),
     getVideoLinksByCategory(categorySlug),
   ]);
-  return <MediaWall photos={photos} videos={videos} placeholderTiles={placeholderTiles} />;
+  return (
+    <MediaWall
+      photos={pickRandom(photos, MAX_WALL_PHOTOS)}
+      videos={videos}
+      placeholderTiles={placeholderTiles}
+    />
+  );
 }
 
 async function CoupleCollages({

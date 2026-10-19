@@ -40,9 +40,9 @@ export const portfolioCategories: PortfolioCategory[] = [
     description: "Every part of the wedding day — ceremony, reception, and the quiet moments in between.",
     accent: "#a8706f",
     tint: "linear-gradient(180deg, #f8eeee, #f3e2e0)",
-    cols: 4,
+    cols: 3,
     driveFolderEnv: "GOOGLE_DRIVE_FOLDER_WEDDING",
-    placeholderTiles: ["#f0dcdc,#dcaaa8", "#e9c9c8,#c98f8a", "#f3e0df,#d3a09d", "#ecd2d1,#c68885"],
+    placeholderTiles: ["#f0dcdc,#dcaaa8", "#e9c9c8,#c98f8a", "#f3e0df,#d3a09d"],
   },
   {
     slug: "events",

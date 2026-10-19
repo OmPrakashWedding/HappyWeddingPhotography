@@ -12,6 +12,8 @@ export type VideoLink = {
   youtubeId?: string;
   /** Matches a couple's Drive folder name (minus the numeric prefix), e.g. "Priya & Arjun". */
   couple?: string;
+  /** When true, only shows in the Galleries "Films" strip — never on a /portfolio/[category] page or a couple collage. */
+  galleryOnly?: boolean;
 };
 
 const VALID_CATEGORIES: PortfolioCategorySlug[] = ["pre-wedding", "wedding", "events", "other"];
@@ -99,6 +101,7 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
       caption: header.indexOf("caption"),
       order: header.indexOf("order"),
       couple: header.indexOf("couple"),
+      galleryOnly: header.indexOf("galleryonly"),
     };
     if (idx.category === -1 || idx.platform === -1 || idx.url === -1) {
       console.error("Video links CSV is missing required columns (category, platform, url)");
@@ -119,6 +122,9 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
       const orderRaw = idx.order !== -1 ? Number(cells[idx.order]) : NaN;
       const order = Number.isFinite(orderRaw) ? orderRaw : 999;
       const couple = idx.couple !== -1 ? cells[idx.couple]?.trim() || undefined : undefined;
+      const galleryOnlyRaw =
+        idx.galleryOnly !== -1 ? cells[idx.galleryOnly]?.trim().toLowerCase() : "";
+      const galleryOnly = galleryOnlyRaw === "yes" || galleryOnlyRaw === "true";
 
       links.push({
         category,
@@ -127,6 +133,7 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
         caption,
         order,
         couple,
+        galleryOnly,
         youtubeId: platform === "youtube" ? extractYouTubeId(url) : undefined,
       });
     }
@@ -141,7 +148,7 @@ export async function getAllVideoLinks(): Promise<VideoLink[]> {
 
 export async function getVideoLinksByCategory(slug: PortfolioCategorySlug): Promise<VideoLink[]> {
   const all = await getAllVideoLinks();
-  return all.filter((v) => v.category === slug).sort((a, b) => a.order - b.order);
+  return all.filter((v) => v.category === slug && !v.galleryOnly).sort((a, b) => a.order - b.order);
 }
 
 /** Video links tagged to one specific couple within a category (the `couple` CSV column). */
@@ -152,7 +159,12 @@ export async function getVideoLinksByCouple(
   const all = await getAllVideoLinks();
   const normalized = coupleName.trim().toLowerCase();
   return all
-    .filter((v) => v.category === categorySlug && v.couple?.trim().toLowerCase() === normalized)
+    .filter(
+      (v) =>
+        !v.galleryOnly &&
+        v.category === categorySlug &&
+        v.couple?.trim().toLowerCase() === normalized
+    )
     .sort((a, b) => a.order - b.order);
 }
 
